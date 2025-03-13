@@ -1,0 +1,79 @@
+unit view.timer;
+
+interface
+
+uses
+   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, StdCtrls, ExtCtrls,
+  Vcl.Buttons, System.ImageList, Vcl.ImgList;
+
+type
+  TForm2 = class(TForm)
+    Timer: TTimer;
+    lblTimer: TLabel;
+    SpeedButton1: TSpeedButton;
+    header: TPanel;
+    btnFechar: TSpeedButton;
+    btnMinimizar: TSpeedButton;
+    Icones: TImageList;
+    procedure TimerTimer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+  private
+     FCounter: Integer;  // Contador de segundos
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+{ TForm2 }
+
+procedure TForm2.FormCreate(Sender: TObject);
+begin
+  // Inicializa o contador de segundos
+  FCounter := 0;
+
+  // Define o intervalo do timer como 1 segundo (1000 ms)
+  Timer.Interval := 1000;  // 1000 ms = 1 segundo
+  Timer.Enabled := False;   // Timer inicialmente desabilitado
+end;
+
+procedure TForm2.SpeedButton1Click(Sender: TObject);
+begin
+    // Alterna o estado do Timer ao clicar no botão
+  if Timer.Enabled then
+  begin
+    Timer.Enabled := False;  // Desabilita o Timer
+    SpeedButton1.Caption := 'Iniciar Timer';  // Altera o texto do botão
+  end
+  else
+  begin
+    Timer.Enabled := True;  // Habilita o Timer
+    FCounter := 0;  // Reseta o contador
+    SpeedButton1.Caption := 'Parar Timer';  // Altera o texto do botão
+  end;
+end;
+
+procedure TForm2.TimerTimer(Sender: TObject);
+begin
+  // Incrementa o contador a cada 1 segundo
+  Inc(FCounter);
+
+  // Atualiza o label com o tempo restante (em minutos e segundos)
+  lblTimer.Caption := Format('%d:%2.2d', [FCounter div 60, FCounter mod 60]);
+
+  // Verifica se 5 minutos se passaram
+  if FCounter >= 300 then
+  begin
+    lblTimer.Enabled := False;  // Desabilita o timer
+    SpeedButton1.Caption := 'Iniciar Timer';  // Reseta o texto do botão
+    ShowMessage('5 minutos se passaram!');  // Exibe uma mensagem
+  end;
+end;
+
+end.

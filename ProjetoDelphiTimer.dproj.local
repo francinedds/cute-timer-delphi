@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/03/12 10:31:11.000.340,=C:\Users\EMANUEL\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2025/03/12 10:46:28.000.381,C:\Users\EMANUEL\Documents\Embarcadero\Studio\Projects\Unit2.dfm=C:\Users\EMANUEL\Desktop\+\Projeto Delphi Timer\views\view.timer.dfm</Transaction>
+    <Transaction>2025/03/12 10:46:28.000.381,C:\Users\EMANUEL\Documents\Embarcadero\Studio\Projects\Unit2.pas=C:\Users\EMANUEL\Desktop\+\Projeto Delphi Timer\views\view.timer.pas</Transaction>
+    <Transaction>2025/03/12 10:47:21.000.306,C:\Users\EMANUEL\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\EMANUEL\Documents\Embarcadero\Studio\Projects\ProjetoDelphiTimer.dproj</Transaction>
+    <Transaction>2025/03/12 10:47:30.000.679,C:\Users\EMANUEL\Documents\Embarcadero\Studio\Projects\ProjetoDelphiTimer.dproj=C:\Users\EMANUEL\Desktop\+\Projeto Delphi Timer\ProjetoDelphiTimer.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

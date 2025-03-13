@@ -1,0 +1,96 @@
+unit view.timer;
+
+interface
+
+uses
+   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, StdCtrls, ExtCtrls,
+  Vcl.Buttons, System.ImageList, Vcl.ImgList, Vcl.Imaging.jpeg;
+
+type
+  TViewTimer = class(TForm)
+    Timer: TTimer;
+    header: TPanel;
+    btnFechar: TSpeedButton;
+    btnMinimizar: TSpeedButton;
+    Icones: TImageList;
+    pnlBackground: TPanel;
+    lblTimer: TLabel;
+    Image1: TImage;
+    pnlBtnToggle: TPanel;
+    btnToggle: TSpeedButton;
+    procedure TimerTimer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnToggleClick(Sender: TObject);
+    procedure btnFecharClick(Sender: TObject);
+    procedure btnMinimizarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+     FCounter: Integer;  // Contador de segundos
+     procedure MakeRounded(Control: TWinControl);
+  public
+    { Public declarations }
+  end;
+
+var
+  ViewTimer: TViewTimer;
+
+implementation
+
+{$R *.dfm}
+
+{ TForm2 }
+
+procedure TViewTimer.btnFecharClick(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
+procedure TViewTimer.btnMinimizarClick(Sender: TObject);
+begin
+  Application.Minimize;
+end;
+
+procedure TViewTimer.FormCreate(Sender: TObject);
+begin
+  // Inicializa o contador de segundos
+  FCounter := 0;
+
+  // Define o intervalo do timer como 1 segundo (1000 ms)
+  Timer.Interval := 1000;  // 1000 ms = 1 segundo
+  Timer.Enabled := False;   // Timer inicialmente desabilitado
+end;
+
+procedure TViewTimer.btnToggleClick(Sender: TObject);
+begin
+    // Alterna o estado do Timer ao clicar no botão
+  if Timer.Enabled then
+  begin
+    Timer.Enabled := False;  // Desabilita o Timer
+    btnToggle.Caption := 'Iniciar Timer';  // Altera o texto do botão
+  end
+  else
+  begin
+    Timer.Enabled := True;  // Habilita o Timer
+    FCounter := 0;  // Reseta o contador
+    btnToggle.Caption := 'Parar';  // Altera o texto do botão
+  end;
+end;
+
+procedure TViewTimer.TimerTimer(Sender: TObject);
+begin
+  // Incrementa o contador a cada 1 segundo
+  Inc(FCounter);
+
+  // Atualiza o label com o tempo restante (em minutos e segundos)
+  lblTimer.Caption := Format('%.2d:%.2d', [FCounter div 60, FCounter mod 60]);
+
+  // Verifica se 5 minutos se passaram
+  if FCounter >= 300 then
+  begin
+    lblTimer.Enabled := False;  // Desabilita o timer
+    btnToggle.Caption := 'Iniciar';  // Reseta o texto do botão
+    ShowMessage('5 minutos se passaram!');  // Exibe uma mensagem
+  end;
+end;
+
+end.
